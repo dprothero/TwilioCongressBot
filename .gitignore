@@ -243,3 +243,7 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+
+# Don't commit Azure publishing info
+PublishScripts/
+TwilioCongressBot.Web/Properties/PublishProfiles

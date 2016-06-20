@@ -5,6 +5,19 @@ VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwilioCongressBot.Web", "TwilioCongressBot.Web\TwilioCongressBot.Web.csproj", "{6335DA9E-EE37-4EBC-BE5B-00F85E4E1D58}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PublishScripts", "PublishScripts", "{68A6F64A-3DDD-4E7A-9C7E-3E6470DA1BB7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{F221597F-E2FA-454E-87C8-D28104A334FE}"
+	ProjectSection(SolutionItems) = preProject
+		PublishScripts\Scripts\Deploy-AzureResourceGroup.ps1 = PublishScripts\Scripts\Deploy-AzureResourceGroup.ps1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Templates", "Templates", "{2E1FF30D-33D9-4705-8995-0512F32A18B8}"
+	ProjectSection(SolutionItems) = preProject
+		PublishScripts\Templates\TwilioCongressBotWeb.json = PublishScripts\Templates\TwilioCongressBotWeb.json
+		PublishScripts\Templates\TwilioCongressBotWeb.param.dev.json = PublishScripts\Templates\TwilioCongressBotWeb.param.dev.json
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +31,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F221597F-E2FA-454E-87C8-D28104A334FE} = {68A6F64A-3DDD-4E7A-9C7E-3E6470DA1BB7}
+		{2E1FF30D-33D9-4705-8995-0512F32A18B8} = {68A6F64A-3DDD-4E7A-9C7E-3E6470DA1BB7}
 	EndGlobalSection
 EndGlobal
