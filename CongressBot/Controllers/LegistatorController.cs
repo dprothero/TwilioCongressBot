@@ -27,7 +27,7 @@ namespace TwilioCongressBot.Web.Controllers
       var response = new TwilioResponse();
 
       var zip = getValidZip(request, response);
-      if(zip == null)
+      if (zip == null)
       {
         response.Message("Please text your ZIP code.");
       }
@@ -40,7 +40,7 @@ namespace TwilioCongressBot.Web.Controllers
         }
         else
         {
-          foreach(var legislator in legislators.results)
+          foreach (var legislator in legislators.results)
           {
             response.Message("Your " + labelDict[legislator.chamber] + ": " +
               getFullName(legislator) + " - " + legislator.phone + " - " +
@@ -58,7 +58,7 @@ namespace TwilioCongressBot.Web.Controllers
       var client = new RestClient(url);
       var request = new RestRequest(Method.GET);
       var response = client.Execute(request);
-      if (response.ResponseStatus != ResponseStatus.Completed || 
+      if (response.ResponseStatus != ResponseStatus.Completed ||
         response.StatusCode != System.Net.HttpStatusCode.OK)
       {
         return null;
@@ -68,19 +68,25 @@ namespace TwilioCongressBot.Web.Controllers
 
     private string getValidZip(SmsRequest request, TwilioResponse response)
     {
-      if (isValidZip(request.Body)) return request.Body;
-      if (isValidZip(request.FromZip))
+      if (containsValidZip(request.Body)) return parseZip(request.Body);
+      if (containsValidZip(request.FromZip))
       {
-        response.Message("Text your ZIP code for more accurate results. We're guessing " + request.FromZip);
-        return request.FromZip;
+        var fromZip = parseZip(request.FromZip);
+        response.Message("Text your ZIP code for more accurate results. We're guessing " + fromZip);
+        return fromZip;
       }
       return null;
     }
 
-    private Regex _zipValidator = new Regex(@"^\d{5}$");
-    private bool isValidZip(string zipToCheck)
+    private Regex _zipValidator = new Regex(@"\d{5}");
+    private bool containsValidZip(string input)
     {
-      return _zipValidator.IsMatch(zipToCheck);
+      return _zipValidator.IsMatch(input ?? "");
+    }
+
+    private string parseZip(string input)
+    {
+      return _zipValidator.Match(input).Value;
     }
 
     private string getFullName(Legislator legislator)
