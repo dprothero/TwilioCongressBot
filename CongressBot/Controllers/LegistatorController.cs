@@ -36,7 +36,11 @@ namespace TwilioCongressBot.Web.Controllers
         var legislators = getLegislators(zip);
         if (legislators == null)
         {
-          response.Message("Error retrieving results for " + zip);
+          response.Message("Error getting results for " + zip);
+        }
+        else if(legislators.count == 0)
+        {
+          response.Message("Could not find results for " + zip);
         }
         else
         {

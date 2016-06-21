@@ -247,3 +247,4 @@ ModelManifest.xml
 # Don't commit Azure publishing info
 PublishScripts/
 TwilioCongressBot.Web/Properties/PublishProfiles
+/Test
