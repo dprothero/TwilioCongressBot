@@ -11,9 +11,9 @@ using TwilioCongressBot.Web.Models;
 
 namespace TwilioCongressBot.Web.Controllers
 {
-  public class LegislatorController : Controller
+  public class LegislatorController : TwilioController
   {
-    private string _congress_api_url_template = "https://congress.api.sunlightfoundation.com/legislators/locate?zip={0}&apikey={1}";
+    private string _congressApiUrlTemplate = "https://congress.api.sunlightfoundation.com/legislators/locate?zip={0}&apikey={1}";
 
     private IDictionary<string, string> labelDict = new Dictionary<string, string>()
     {
@@ -53,12 +53,12 @@ namespace TwilioCongressBot.Web.Controllers
         }
       }
 
-      return new TwiMLResult(response);
+      return TwiML(response);
     }
 
     private CongressApiResult getLegislators(string zip)
     {
-      var url = string.Format(_congress_api_url_template, zip, ConfigurationManager.AppSettings["CongressApiKey"]);
+      var url = string.Format(_congressApiUrlTemplate, zip, ConfigurationManager.AppSettings["CongressApiKey"]);
       var client = new RestClient(url);
       var request = new RestRequest(Method.GET);
       var response = client.Execute(request);
