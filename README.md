@@ -8,4 +8,4 @@ Using C#, ASP.NET, and Azure, this application responds to a ZIP code with a lis
 
 ![SMS Conversation](https://twilioinc.wpengine.com/wp-content/uploads/2016/06/0-e1466616781393.png)
 
-See blog post: (coming soon).
+See blog post: https://www.twilio.com/blog/2016/06/csharp-and-azure-sms-congress-directory.html
